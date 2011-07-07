@@ -1,7 +1,7 @@
 (function () {
   "use strict";
-  function select(selector) {
-    return Sizzle(selector);
+  function select(selector, context) {
+    return Sizzle(selector, context);
   }
   
   function camelCaseCSS(str) {
@@ -23,14 +23,16 @@
     return newString;
   }
   
-  function jas(rules) {
+  function jas(rules, context) {
+    context = context || document;
+    
     var rule,
         properties,
         elements,
         elementsLen,
         i,
-        propName, jsPropName;
-        
+        propName, jsPropName,
+        sizzled;
         
     for (rule in rules) {
       properties  = rules[rule];
@@ -38,8 +40,16 @@
       elementsLen = elements.length;
       for (i = 0; i < elementsLen; i++) {
         for (propName in properties) {
-          jsPropName = camelCaseCSS(propName);
-          elements[i].style[jsPropName] = properties[propName];
+          if (Sizzle(propName).length > 0) {
+            sizzled = {};
+            sizzled[propName] = properties[propName];
+            jas(sizzled, elements[i]);
+          }
+          
+          else {
+            jsPropName = camelCaseCSS(propName);
+            elements[i].style[jsPropName] = properties[propName];
+          }
         }
       }
     }

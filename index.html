@@ -9,11 +9,18 @@
     window.onload = function () {
       jas({
         'li': {
-          'list-style-type': 'none',
-          'background-color': 'black'
+          'list-style-type': 'none'
+        },
+        'ul.test': {
+          'background-color': 'red',
+          'li': {
+            'margin-top': '2px',
+            'background-color': 'black'
+          }
         }
       });
       
+      /*
       function fadeToWhite() {
         var i = 0;
         var iter = function () {          
@@ -42,12 +49,17 @@
       console.log(myObj.two());
   
       
-      fadeToWhite();
+      fadeToWhite();*/
     }
   </script>
 </head>
 <body>
   <h3>This my h3</h3>
+  
+  <ul class="test">
+    <li>This is my list item</li>
+    <li>Two</li>
+  </ul>
   
   <ul>
     <li>This is my list item</li>
