@@ -1,4 +1,3 @@
 (function () {
-  console.log("test");
-
+  console.log(Sizzle('h3'));
 }());
