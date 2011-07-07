@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html lang="ru-RU">
+<head>
+  <meta charset="UTF-8">
+  <title>Jazz</title>
+  
+  <script type="text/javascript">
+    jazz({
+      'ul': {
+        'list-style-type': 'none' 
+      }
+    });
+    
+    function jazz(rules) {
+      for (selector in rules) {
+        var rule = rules[selector]
+        console.log(selector + ' {');
+        for (propertyName in rule) {
+          console.log('  ' + propertyName + ': ' + rule[propertyName] + ';');
+        }
+        console.log('}');
+      }
+    }
+  </script>
+</head>
+<body>
+  <h3>This my h3</h3>
+  
+  <ul>
+    <li>This is my list item</li>
+  </ul>
+</body>
+</html>
