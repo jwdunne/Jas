@@ -4,38 +4,54 @@
   <meta charset="UTF-8">
   <title>Jazz</title>
   <script type="text/javascript" src="jas.js"></script>
-  <!--<script type="text/javascript">
-    jazz({
-      'ul': {
-        'list-style-type': 'none' 
-      }
-    });
-    
-    function jazz(rules) {
-      var selector,
-          element;
-      for (selector in rules) {
-        element = document.get
-      }
-    }
-    
-    /*
-    for (selector in rules) {
-        var rule = rules[selector]
-        console.log(selector + ' {');
-        for (propertyName in rule) {
-          console.log('  ' + propertyName + ': ' + rule[propertyName] + ';');
+  
+  <script type="text/javascript">
+    window.onload = function () {
+      jas({
+        'li': {
+          'list-style-type': 'none',
+          'background-color': 'black'
         }
-        console.log('}');
-      }
-    */
-  </script>-->
+      });
+      
+      function fadeToWhite() {
+        var i = 0;
+        var iter = function () {          
+          jas({
+            'li': {
+              'background-color': jas.rgb(i, i, i)
+            }
+          });
+          
+          
+          if (i == 255) {
+            return;
+          }
+          
+          i++;
+          setTimeout(iter, 10);
+        };
+        iter();
+      };
+      
+      var myObj = {
+        "one": 1,
+        "two": function () { return this.one; }
+      };
+      
+      console.log(myObj.two());
+  
+      
+      fadeToWhite();
+    }
+  </script>
 </head>
 <body>
   <h3>This my h3</h3>
   
   <ul>
     <li>This is my list item</li>
+    <li>Two</li>
   </ul>
 </body>
 </html>
