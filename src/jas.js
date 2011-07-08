@@ -1,5 +1,6 @@
 (function () {
   "use strict";
+  
   function select(selector, context) {
     return Sizzle(selector, context);
   }
@@ -23,12 +24,20 @@
     return newString;
   }
   
+  function isValidCSSProperty(element, property) {
+    if (typeof element.style[property] != "undefined") {
+      return true;
+    }
+    
+    return false;
+  }
+  
   function jas(rules, context) {
     context = context || document;
     
     var rule,
         properties,
-        elements,
+        elements, element,
         elementsLen,
         i,
         propName, jsPropName,
@@ -40,15 +49,16 @@
       elementsLen = elements.length;
       for (i = 0; i < elementsLen; i++) {
         for (propName in properties) {
-          if (Sizzle(propName).length > 0) {
-            sizzled = {};
-            sizzled[propName] = properties[propName];
-            jas(sizzled, elements[i]);
+          element = elements[i];
+          jsPropName = camelCaseCSS(propName);
+          if (isValidCSSProperty(element, jsPropName)) {
+            element.style[jsPropName] = properties[propName];            
           }
           
           else {
-            jsPropName = camelCaseCSS(propName);
-            elements[i].style[jsPropName] = properties[propName];
+            sizzled = {};
+            sizzled[propName] = properties[propName];
+            jas(sizzled, element);
           }
         }
       }
