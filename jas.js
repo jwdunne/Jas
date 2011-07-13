@@ -1472,7 +1472,7 @@ window.Sizzle = Sizzle;
       
       // Behave like CSS. If no elements match, just move right on.
       if (elementsLen < 1) {
-	continue;
+        continue;
       }
       
       for (i = 0; i < elementsLen; i++) {
