@@ -15,23 +15,24 @@
           'background-color': 'red',
           'li': {
             'margin-top': '2px',
-            'background-color': 'black'
+            'background-color': 'white'
           }
         }
       });
       
-      /*
-      function fadeToWhite() {
+
+      function fadeToRed() {
         var i = 0;
         var iter = function () {          
           jas({
             'li': {
-              'background-color': jas.rgb(i, i, i)
+              'background-color': jas.rgb(255, 128 - i, 255 - i)
             }
           });
           
           
           if (i == 255) {
+            fadeToRed();
             return;
           }
           
@@ -41,16 +42,10 @@
         iter();
       };
       
-      var myObj = {
-        "one": 1,
-        "two": function () { return this.one; }
-      };
-      
-      console.log(myObj.two());
-  
-      
-      fadeToWhite();*/
+      fadeToRed();
     }
+
+
   </script>
 </head>
 <body>
